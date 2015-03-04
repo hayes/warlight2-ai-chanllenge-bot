@@ -1,0 +1,31 @@
+{
+  "name": "warlight2",
+  "version": "2.0.0",
+  "description": "A basic JavaScript starter bot written for The AI Games' Warlight 2 challenge",
+  "main": "bot.js",
+  "scripts": {
+    "build": "npm run clean && npm install && npm run test && npm run package",
+    "clean": "find . -depth -type d -name 'node_modules' -delete",
+    "watch": "nodemon -e js,eslintrc,json --exec 'npm run test'",
+    "test": "eslint .",
+    "package": "npm run bump && npm prune --production && npm run zip",
+    "bump": "npm version patch",
+    "zip": "rm ../hayestack.zip && zip -r ../hayestack ./*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hayes/warlight2-ai-chanllenge-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hayes/warlight2-ai-chanllenge-bot/issues"
+  },
+  "homepage": "https://github.com/hayes/warlight2-ai-chanllenge-bot",
+  "devDependencies": {
+    "eslint": "^0.15.1"
+  },
+  "dependencies": {
+    "split": "^0.3.3"
+  }
+}
