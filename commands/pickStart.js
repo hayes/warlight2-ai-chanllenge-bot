@@ -1,10 +1,19 @@
 module.exports = pickStart
 
 function pickStart(bot) {
-  bot.interface.on('pick_starting_region', pick)
+  var calculated = false
+  bot.on('pick_starting_region', pick)
 
   function pick() {
+    var start = Date.now()
     var options = [].slice.call(arguments, 1)
-    bot.interface.write('' + options[Math.floor(Math.random() * options.length)])
+    if (calculated) return doPick()
+    calculated = true
+    bot.map.calculateDistances(doPick)
+
+    function doPick() {
+      bot.log('distance calculation took:', Date.now() - start + 'ms')
+      bot.emit('output', options[Math.floor(Math.random() * options.length)])
+    }
   }
 }

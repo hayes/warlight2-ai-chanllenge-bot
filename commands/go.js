@@ -1,15 +1,15 @@
 module.exports = addGo
 
 function addGo(bot) {
-  bot.interface.on('go', go)
+  bot.on('go', go)
 
-  function go(action, time) {
+  function go(action) {
     switch (action) {
       case 'place_armies':
-        bot.placeArmies(time)
+        bot.emit('place')
         break
       case 'attack/transfer':
-        bot.attackTransfer(time)
+        bot.emit('attack')
         break
     }
   }

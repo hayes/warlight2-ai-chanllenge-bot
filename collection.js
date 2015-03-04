@@ -6,6 +6,7 @@ function Collection() {
 }
 
 Collection.prototype.add = function add(key, value) {
+  if (this[key]) return
   this.list.push(value)
-  this.map[key] = value
+  this[key] = value
 }

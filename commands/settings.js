@@ -1,7 +1,7 @@
 module.exports = loadSettings
 
 function loadSettings(bot) {
-  bot.interface.on('settings', addSetting)
+  bot.on('settings', addSetting)
 
   function addSetting(name, value) {
     switch (name) {
@@ -13,7 +13,13 @@ function loadSettings(bot) {
         bot.settings[name] = +value
         break
       case 'starting_regions':
-        bot.settomgs[name] = [].slice.call(arguments, 1)
+        bot.settings[name] = [].slice.call(arguments, 1)
+        break
+      case 'your_bot':
+        bot.name = value
+        break
+      case 'opponent_bot':
+        bot.opponent = value
         break
       default:
         bot.settings[name] = value

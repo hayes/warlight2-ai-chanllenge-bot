@@ -3,15 +3,15 @@ var CONSTANTS = require('../constants')
 module.exports = setupMap
 
 function setupMap(bot) {
-  bot.interface.on('setup_map', checkType)
+  bot.on('setup_map', checkType)
 
   function checkType(type) {
     switch (type) {
       case 'super_regions':
-        invoke.call(bot, 'addSuperRegions', arguments)
+        invoke.call(bot, 'addSuperRegion', arguments)
         break
       case 'regions':
-        invoke.call(bot, 'addRegions', arguments)
+        invoke.call(bot, 'addRegion', arguments)
         break
       case 'neighbors':
         invoke.call(bot, 'linkRegions', arguments)
@@ -40,6 +40,6 @@ function wastelands(bot, values) {
 
 function starting(bot, values) {
   for (var i = 1, l = values.length; i < l; ++i) {
-    bot.map.regions.map[+values[i]].owner = bot.options.opponent_bot
+    bot.map.regions.map[+values[i]].owner = bot.opponent
   }
 }
